@@ -1,4 +1,20 @@
 @import "tailwindcss";
 @theme {
-  --color-test: #000;
+  --color-theme: oklch(62.7% 0.265 303.9);
+}
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@utility warn {
+  @apply border-red-600 text-red-600 placeholder:!text-red-600;
+  &:where(input, button) {
+    @apply !border-2 !border-red-600;
+  }
+}
+@utility warn-text {
+  &::after {
+    @apply text-sm text-red-600 content-[attr(warn-text-content)];
+  }
 }

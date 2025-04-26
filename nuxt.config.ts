@@ -6,5 +6,8 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  css: ["/public/css/tailwind.css"]
+  css: ["/public/css/tailwind.css"],
+  imports: {
+    dirs: ["ts/store/**", "ts/constants/**", "ts/utils/**"]
+  }
 });
