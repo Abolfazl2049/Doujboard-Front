@@ -18,4 +18,10 @@ let loginApi = async (username: string, password: string) => {
     baseURL
   });
 };
-export {signupApi, loginApi};
+let getAccountData = async () => {
+  return await $fetch("/user/profile", {
+    ...setAuthHeader(),
+    baseURL
+  });
+};
+export {signupApi, loginApi, getAccountData};

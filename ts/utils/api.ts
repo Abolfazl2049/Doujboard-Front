@@ -1,4 +1,4 @@
-import type { todoObject } from "~/types";
+import type {todoObject} from "~/types";
 
 let callApi = async (func: Function, params: Array<any>, todo?: todoObject) => {
   let error = false;
@@ -11,48 +11,34 @@ let callApi = async (func: Function, params: Array<any>, todo?: todoObject) => {
   return res;
 };
 let handleError = async (res: any, customMessage?: string) => {
-  // let toast = useToast(); 
+  let {$toast: toast} = useNuxtApp();
   if (customMessage) {
-    // toast.add({
-    //   color: "error",
-    //   title: customMessage,
-    // });
+    toast.info({
+      color: "error",
+      title: customMessage
+    });
     return;
   }
-  // if (Object.values(res)[0] === "FetchError" && !res.statusCode) return toast.add({ title: "خطا در برقراری ارتباط", color: "neutral" });
+  if (Object.values(res)[0] === "FetchError" && !res.statusCode) return toast.error("خطا در برقراری با سرور");
   let data = res.data;
   let apiMessage = parseApiResMessage(data);
 
   switch (res.statusCode) {
     case 404:
-      // toast.add({
-      //   title: "یافت نشد",
-      //   description: apiMessage,
-      //   color: "error",
-      // });
+      toast.error("یافت نشد");
       break;
     case 500:
     case 502:
-      // toast.add({
-      //   title: "خطا در برقراری ارتباط با سرور",
-      //   color: "error",
-      // });
+      toast.error("خطا در برقراری با سرور");
       break;
     default:
-      // toast.add({
-      //   title: apiMessage,
-      //   color: "error",
-      // });
+      toast.error(apiMessage);
   }
 };
 let handleToDo = (todo: todoObject) => {
-  // let toast = useToast();
+  let {$toast: toast} = useNuxtApp();
   if (todo.navigateTo) navigateTo(todo.navigateTo);
-  if (todo.message){}
-    // toast.add({
-    //   title: todo.message,
-    //   icon: "i-heroicons-check-circle",
-    // });
+  if (todo.message) toast.success(todo.message);
 };
 let parseApiResMessage = (data: any) => {
   let objectFirstKey = Object.keys(data);
@@ -61,4 +47,4 @@ let parseApiResMessage = (data: any) => {
   else if (objectFirstKey) return `${objectFirstKey[0]} : ${data[objectFirstKey[0]]}`;
   else return `${data ?? "خطا در برقراری ارتباط"}`;
 };
-export { callApi };
+export {callApi};
