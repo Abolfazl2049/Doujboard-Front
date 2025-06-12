@@ -19,17 +19,17 @@ let handleError = async (res: any, customMessage?: string) => {
     });
     return;
   }
-  if (Object.values(res)[0] === "FetchError" && !res.statusCode) return toast.error("خطا در برقراری با سرور");
+  if (Object.values(res)[0] === "FetchError" && !res.statusCode) return toast.error("there was an error, try again");
   let data = res.data;
   let apiMessage = parseApiResMessage(data);
 
   switch (res.statusCode) {
     case 404:
-      toast.error("یافت نشد");
+      toast.error("NOT FOUND");
       break;
     case 500:
     case 502:
-      toast.error("خطا در برقراری با سرور");
+      toast.error(apiMessage);
       break;
     default:
       toast.error(apiMessage);
@@ -41,10 +41,11 @@ let handleToDo = (todo: todoObject) => {
   if (todo.message) toast.success(todo.message);
 };
 let parseApiResMessage = (data: any) => {
-  let objectFirstKey = Object.keys(data);
+  let objectFirstKey = Object.keys(data)[0];
   if (Array.isArray(data)) return data.join("-");
   else if (data.message) return data.message;
-  else if (objectFirstKey) return `${objectFirstKey[0]} : ${data[objectFirstKey[0]]}`;
-  else return `${data ?? "خطا در برقراری ارتباط"}`;
+  else if (data.data) return data.data;
+  else if (objectFirstKey) return `${objectFirstKey} : ${data[objectFirstKey]}`;
+  else return `${data ?? "there was an error, try again"}`;
 };
 export {callApi};

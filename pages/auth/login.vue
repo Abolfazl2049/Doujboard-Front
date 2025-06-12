@@ -7,7 +7,7 @@ let signup = (end: Function) => {
   if (checkValue(username.value, "#username") && checkValue(password.value, "#password")) {
     callApi(loginApi, [username.value, password.value])
       .then(res => {
-        let token = res.data.token.token.split(" ")[1];
+        let token = res.data.token.split(" ")[1];
         localStorage.setItem("token", token);
         reloadNuxtApp({path: "/"});
       })
