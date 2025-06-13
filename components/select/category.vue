@@ -25,7 +25,7 @@ onMounted(getList);
     <div v-if="list.length" class="flex overflow-x-auto gap-3">
       <div
         v-for="c in list"
-        class="text-theme text-3xl border-[6px] base-box"
+        class="text-theme base-box"
         :class="{
           'bg-theme text-white border-none': selected === c.id
         }"
@@ -33,7 +33,7 @@ onMounted(getList);
       >
         {{ c.name }}
       </div>
-      <div class="base-box text-black text-2xl border-[4px]" @click="showModal = true">create new</div>
+      <div class="base-box text-black" @click="showModal = true">create new</div>
     </div>
     <div v-else-if="isReceived" class="h-[200px] flex-center">
       <div @click="showModal = true">no category ! click to create one</div>
@@ -45,6 +45,6 @@ onMounted(getList);
 <style scoped>
 @reference "~/public/css/tailwind.css";
 .base-box {
-  @apply size-[150px] flex-center p-2 break-words rounded-2xl  cursor-pointer text-center overflow-hidden min-w-[150px];
+  @apply size-[100px] flex-center text-sm border-[3px] p-2 break-words rounded-xl  cursor-pointer text-center overflow-hidden min-w-[100px];
 }
 </style>

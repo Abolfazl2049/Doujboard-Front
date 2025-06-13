@@ -12,9 +12,10 @@ let getDoujListApi = async (query: object) => {
     params: query
   });
 };
-let postDoujApi = async (title: string, description: string, img: File, category: number, hidden: boolean) => {
+let postDoujApi = async (title: string, link: string, description: string, img: File, category: number, hidden: boolean) => {
   const form = new FormData();
   form.append("title", title);
+  form.append("link", link);
   form.append("description", description);
   form.append("img", img);
   form.append("category", category.toString());
