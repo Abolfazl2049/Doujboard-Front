@@ -14,13 +14,13 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="">
+  <div class="h-[100svh]">
     <div class="flex flex-col" v-if="categories.length">
       <NodeDoujCategoryCon v-for="c in categories" :category="c" />
     </div>
-    <div v-else-if="isReceived">
-      <NuxtLink class="text-blue-600 hover:underline"> you dont have any douj , create your first douj here ! </NuxtLink>
+    <div v-else-if="isReceived" class="h-full flex-center">
+      <NuxtLink to="/new" class="text-blue-600 hover:underline text-2xl font-medium"> you dont have any douj , create your first douj here ! </NuxtLink>
     </div>
-    <div v-else>loading</div>
+    <div v-else class="h-full flex-center">loading</div>
   </div>
 </template>

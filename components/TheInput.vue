@@ -6,7 +6,8 @@ const {type, label} = defineProps({
     default: "text"
   },
   label: String,
-  id: String
+  id: String,
+  maxLength: Number
 });
 </script>
 <template>
@@ -14,6 +15,6 @@ const {type, label} = defineProps({
     <span :id="id" class="text-lg uppercase mb-2">
       {{ label }}
     </span>
-    <input :id="id" v-model="value" class="border rounded-lg p-4" :type="type" />
+    <input :id="id" v-model="value" class="border rounded-lg p-4" :type="type" :maxlength="maxLength" />
   </div>
 </template>
