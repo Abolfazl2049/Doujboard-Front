@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {getDoujCategoryListApi} from "~/ts/api/douj";
-
 let list = ref([]);
 let isReceived = ref(false);
 const showModal = ref(false);
@@ -27,16 +26,17 @@ onMounted(getList);
         v-for="c in list"
         class="text-theme base-box"
         :class="{
-          'bg-theme text-white border-none': selected === c.id
+          'border-theme ': selected === c.id
         }"
         @click="selected = c.id"
       >
         {{ c.name }}
+        <IconCheck v-if="selected === c.id" class="absolute left-0.5 bottom-0.5" />
       </div>
-      <div class="base-box text-black" @click="showModal = true">create new</div>
+      <div class="base-box text-black items-center gap-1 !text-xs" @click="showModal = true"><IconPlusCircleFilled class="size-3" />create new</div>
     </div>
     <div v-else-if="isReceived" class="h-[200px] flex-center">
-      <div @click="showModal = true">no category ! click to create one</div>
+      <button class="bg-gray-300 rounded-lg px-4 py-1 cursor-pointer" @click="showModal = true">no category ! click to create one</button>
     </div>
     <div v-else>loading</div>
   </div>
@@ -45,6 +45,6 @@ onMounted(getList);
 <style scoped>
 @reference "~/public/css/tailwind.css";
 .base-box {
-  @apply size-[100px] flex-center text-sm border-[3px] p-2 break-words rounded-xl  cursor-pointer text-center overflow-hidden min-w-[100px];
+  @apply size-[100px] flex-center relative  text-sm border-[3px] p-2 break-words rounded-lg  cursor-pointer text-center overflow-hidden min-w-[100px];
 }
 </style>

@@ -24,7 +24,7 @@ onMounted(() => {
     <p class="text-lg font-semibold my-2">
       {{ category.name }}
     </p>
-    <div v-if="doujList.length" class="grid grid-cols-5">
+    <div v-if="doujList.length" class="grid grid-cols-5 gap-2.5">
       <CardDouj v-for="d in doujList" :douj="d" />
     </div>
     <div class="min-h-[200px] flex-center" v-else-if="isReceived">no douj in this category</div>

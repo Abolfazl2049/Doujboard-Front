@@ -7,9 +7,9 @@ let {douj} = defineProps({
 });
 </script>
 <template>
-  <NuxtLink :to="douj.link" target="_blank" external class="rounded-xl overflow-hidden border border-gray-300 shadow-lg">
-    <TheImg :src="douj.img" class="h-[180px]" />
-    <div class="h-[150px] p-2.5">
+  <NuxtLink :to="douj.link" target="_blank" external class="rounded-xl overflow-hidden border border-gray-300 shadow-lg relative pt-[180px]">
+    <TheImg :src="douj.img" class=" absolute inset-0" />
+    <div class="h-[150px] p-2.5 relative z-10 backdrop-blur-xl text-white">
       <p class="text-xl">
         {{ douj.title }}
       </p>

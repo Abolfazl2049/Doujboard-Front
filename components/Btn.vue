@@ -15,7 +15,7 @@ let sendCLickEmit = () => {
 </script>
 <template>
   <button
-    class="bg-theme px-4 w-fit mt-5 cursor-pointer rounded-2xl p-3 text-center text-xl font-semibold text-white transition-all disabled:opacity-60"
+    class="bg-theme px-4 w-fit mt-5 cursor-pointer rounded-lg p-3 text-center text-xl font-semibold text-white transition-all disabled:opacity-60"
     :class="{'cursor-not-allowed opacity-60': disabled}"
     @click="sendCLickEmit"
     :disabled="disabled"

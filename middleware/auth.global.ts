@@ -6,11 +6,11 @@ export default defineNuxtRouteMiddleware(async to => {
     else if (!isPublicRoute) {
       let account = accountStore();
       await account.getData().catch(() => {
-        localStorage.removeItem("token");
-        return reloadNuxtApp({
-          path: "/auth/login?redirect=error",
-          ttl: 0
-        });
+        // localStorage.removeItem("token");
+        // return reloadNuxtApp({
+        //   path: "/auth/login?redirect=error",
+        //   ttl: 0
+        // });
       });
     } else console.log("test");
   }

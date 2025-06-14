@@ -15,7 +15,7 @@ let submit = (end: Function) => {
     checkValue(imgs.value[0], "#img") &&
     checkValue(category.value, "#category")
   ) {
-    callApi(postDoujApi, [title.value, link.value, description.value, imgs.value[0].file, category.value, hidden.value], {
+    callApi(postDoujApi, [title.value, link.value, description.value, (imgs.value[0].file || imgs.value[0].src) , category.value, hidden.value], {
       navigateTo: "/"
     }).finally(end);
   } else end();
