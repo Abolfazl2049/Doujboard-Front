@@ -1,0 +1,25 @@
+@reference "./tailwind.css";
+
+.flex-col {
+  @apply flex;
+}
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) {
+  @apply text-red-600 placeholder:!text-red-600;
+}
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) > * {
+  &:where(input, button, textarea) {
+    @apply !border-red-600 !outline-red-600;
+  }
+}
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) + .invalid-value-text {
+  &::after {
+    @apply mx-2 mt-2 !block text-xs text-red-600 content-[attr(data-message)];
+  }
+}
+.auth-con {
+  @apply mx-auto flex w-full flex-col items-center;
+}
+
+.full-screen-con {
+  @apply fixed inset-0 z-[100];
+}

@@ -1,0 +1,105 @@
+@import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+@layer base {
+  body {
+    @apply dark:bg-mine-shaft mx-auto max-w-[540px] !overflow-hidden bg-white dark:text-white;
+  }
+  button,
+  a {
+    @apply block cursor-pointer;
+  }
+  button:disabled,
+  input:disabled {
+    @apply cursor-not-allowed opacity-70 transition-opacity duration-300;
+  }
+  input:focus,
+  button:focus {
+    @apply outline-0;
+  }
+  span {
+    @apply line-clamp-1 block overflow-ellipsis;
+  }
+}
+@theme {
+  /* primary  */
+  --color-primary: #f85206;
+  --color-primary-100: #ff793c;
+  --color-primary-200: #ff8852;
+  --color-primary-300: #ff7d42;
+
+  /* secondary */
+  --color-secondary: #f9c308;
+  --color-secondary-500: #f9c308;
+
+  /* others */
+  --color-scorpion: #565656;
+  --color-dusty-gray: #989394;
+  --color-alto: #dbdbdb;
+  --color-mine-shaft: #262626;
+  --color-charcoal: #333333;
+  --color-dusty-gray: #959393;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility a-center-x {
+  @apply left-1/2 -translate-x-1/2;
+}
+@utility a-center-y {
+  @apply top-1/2 -translate-y-1/2;
+}
+@utility a-center {
+  @apply a-center-x a-center-y;
+}
+@utility border-gradient {
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    padding: 2px;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@utility border-gradient-primary {
+  @apply border-gradient;
+  &::before {
+    background: linear-gradient(135deg, #f8520699, #f1ad0099);
+  }
+}
+@utility border-gradient-bloody {
+  @apply border-gradient;
+  &::before {
+    background: linear-gradient(180deg, #bc3b00, #561b00);
+    inset: -1px;
+  }
+}
+
+@utility bg-gradient-primary {
+  background: linear-gradient(135deg, #f85206 0%, #f1ad00 100%);
+}
+
+@utility text-gradient {
+  background: -webkit-linear-gradient(0deg, #f85206ee 0%, #f1ad00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-2xs {
+  @apply text-[10px];
+}

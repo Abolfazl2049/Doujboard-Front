@@ -1,0 +1,184 @@
+@reference '~/assets/css/tailwind.css';
+
+.email-select {
+  --vs-selected-bg: white;
+  --vs-border-radius: 14px;
+  --vs-border-color: var(--color-alto);
+  --vs-selected-color: black;
+  --vs-dropdown-option--active-bg: var(--color-gray-300);
+  --vs-dropdown-option--active-color: black;
+}
+.email-select .v-select {
+  @apply rounded-xl bg-white;
+}
+.email-select .vs__btn {
+  @apply h-[42px] pr-2;
+}
+.vs__selected {
+  @apply !static !opacity-100;
+}
+.email-select li {
+  @apply py-2;
+}
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* toastification custom  */
+.Vue-Toastification__container {
+  padding: 1.5rem;
+}
+
+.Vue-Toastification__toast {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 1rem 1.25rem !important;
+  min-height: 0 !important;
+  min-width: 24rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+  @apply max-md:!min-w-[90%] max-md:!max-w-[90%] max-md:!mx-auto;
+}
+
+.Vue-Toastification__toast:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.Vue-Toastification__toast--default {
+  color: black !important;
+}
+.Vue-Toastification__toast--default .Vue-Toastification__toast-body {
+  color: black !important;
+}
+/* Success Toast */
+.Vue-Toastification__toast--success {
+  background: linear-gradient(135deg, rgba(72, 187, 120, 0.95), rgba(56, 161, 105, 0.95)) !important;
+  border: none !important;
+}
+
+.Vue-Toastification__toast--success .Vue-Toastification__icon {
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Error Toast */
+.Vue-Toastification__toast--error {
+  background: linear-gradient(135deg, rgba(245, 101, 101, 0.95), rgba(229, 62, 62, 0.95)) !important;
+  border: none !important;
+}
+
+.Vue-Toastification__toast--error .Vue-Toastification__icon {
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Warning Toast */
+.Vue-Toastification__toast--warning {
+  background: linear-gradient(135deg, rgba(251, 189, 35, 0.95), rgba(237, 137, 54, 0.95)) !important;
+  border: none !important;
+}
+
+.Vue-Toastification__toast--warning .Vue-Toastification__icon {
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Info Toast */
+.Vue-Toastification__toast--info {
+  background: linear-gradient(135deg, rgba(66, 153, 225, 0.95), rgba(49, 130, 206, 0.95)) !important;
+  border: none !important;
+}
+
+.Vue-Toastification__toast--info .Vue-Toastification__icon {
+  color: #ffffff !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Toast Body */
+.Vue-Toastification__toast-body {
+  font-family: vazirmatn !important;
+  font-size: 0.95rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Icon */
+.Vue-Toastification__icon {
+  margin: 0 !important;
+  font-size: 1.5rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* Close Button */
+.Vue-Toastification__toast--default .Vue-Toastification__close-button {
+  color: black !important;
+}
+
+.Vue-Toastification__close-button {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 0.8 !important;
+  padding: 0 !important;
+  align-self: center !important;
+  margin-left: 0.75rem !important;
+  font-size: 1.25rem !important;
+  transition: all 0.2s ease !important;
+  transform: scale(1) !important;
+}
+
+.Vue-Toastification__close-button:hover {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Progress Bar */
+.Vue-Toastification__progress-bar {
+  background: rgba(255, 255, 255, 0.3) !important;
+  height: 4px !important;
+  bottom: 0 !important;
+  border-radius: 0 0 12px 12px !important;
+}
+.Vue-Toastification__toast--default .Vue-Toastification__progress-bar {
+  background: black !important;
+}
+
+/* Toast Container Animations */
+@keyframes toastSlideIn {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.Vue-Toastification__bounce-enter-active {
+  animation: toastSlideIn 0.3s ease forwards !important;
+}
+
+/* RTL Support */
+[dir="rtl"] .Vue-Toastification__icon {
+  margin-left: 0.75rem !important;
+  margin-right: 0 !important;
+}
+
+[dir="rtl"] .Vue-Toastification__close-button {
+  margin-right: 0.75rem !important;
+  margin-left: 0 !important;
+}

@@ -1,0 +1,41 @@
+/* Simple fade transition for public pages */
+.page-default-enter-active,
+.page-default-leave-active {
+  transition: opacity 0.2s ease;
+}
+.page-default-enter-from,
+.page-default-leave-to {
+  opacity: 0;
+}
+
+/* Fancy slide animation for auth pages */
+.page-auth-enter-active,
+.page-auth-leave-active {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  will-change: transform, opacity;
+  position: absolute;
+  width: 100%;
+}
+.page-auth-enter-from {
+  opacity: 0;
+  transform: translateX(30px) translateY(0);
+}
+.page-auth-leave-to {
+  opacity: 0;
+  transform: translateX(-30px) translateY(0);
+}
+.animate-scale {
+  animation: scale 750ms ease-in-out infinite alternate;
+}
+.animate-scale[data-animation-mode="slow"] {
+  animation: scale 1250ms ease-in-out infinite alternate;
+}
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}

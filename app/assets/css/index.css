@@ -1,0 +1,19 @@
+@reference "./tailwind.css";
+
+:root {
+  --top-nav-h: 67px;
+  --bottom-nav-h: 70px;
+  --page-max-width: 540px;
+}
+.default-layout-page-parent {
+  @apply flex-1;
+}
+.default-layout-page-parent > div {
+  @apply min-h-[calc(100svh-var(--top-nav-h))] w-full p-4;
+}
+#default-layout-con[data-has-bottom-nav="true"] .default-layout-page-parent > div {
+  @apply min-h-[calc(100svh-var(--top-nav-h)-var(--bottom-nav-h))];
+}
+#default-layout-con[data-nav-variant="transparent"] .default-layout-page-parent > div {
+  @apply h-screen w-full p-0;
+}
