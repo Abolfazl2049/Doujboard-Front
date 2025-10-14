@@ -7,7 +7,7 @@
 @plugin "@tailwindcss/typography";
 @layer base {
   body {
-    @apply dark:bg-mine-shaft mx-auto max-w-[540px] !overflow-hidden bg-white dark:text-white;
+    @apply dark:bg-mine-shaft mx-auto  !overflow-hidden bg-white dark:text-white;
   }
   button,
   a {
@@ -27,14 +27,14 @@
 }
 @theme {
   /* primary  */
-  --color-primary: #f85206;
-  --color-primary-100: #ff793c;
-  --color-primary-200: #ff8852;
-  --color-primary-300: #ff7d42;
+  --color-primary: #8b5cf6;
+  --color-primary-100: #a78bfa;
+  --color-primary-200: #c4b5fd;
+  --color-primary-300: #ddd6fe;
 
   /* secondary */
-  --color-secondary: #f9c308;
-  --color-secondary-500: #f9c308;
+  --color-secondary: #ec4899;
+  --color-secondary-500: #ec4899;
 
   /* others */
   --color-scorpion: #565656;
@@ -79,7 +79,7 @@
 @utility border-gradient-primary {
   @apply border-gradient;
   &::before {
-    background: linear-gradient(135deg, #f8520699, #f1ad0099);
+    background: linear-gradient(135deg, #8b5cf699, #ec489999);
   }
 }
 @utility border-gradient-bloody {
@@ -91,11 +91,11 @@
 }
 
 @utility bg-gradient-primary {
-  background: linear-gradient(135deg, #f85206 0%, #f1ad00 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
 }
 
 @utility text-gradient {
-  background: -webkit-linear-gradient(0deg, #f85206ee 0%, #f1ad00 100%);
+  background: -webkit-linear-gradient(0deg, #8b5cf6ee 0%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

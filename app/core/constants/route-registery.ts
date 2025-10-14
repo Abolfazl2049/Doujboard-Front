@@ -50,8 +50,8 @@ class RouteRegistryClass {
   };
   routes: Record<keyof typeof AppRouteName, AppRoute> = {
     // auth
-    AUTH_SIGN_IN: new AppRoute("/auth/sign-in", "AUTH_SIGN_IN", this.sections.AUTH),
-    AUTH_SIGN_UP: new AppRoute("/auth/sign-up", "AUTH_SIGN_UP", this.sections.AUTH),
+    AUTH_SIGN_IN: new AppRoute("/auth/signin", "AUTH_SIGN_IN", this.sections.AUTH, { isPublic: true }),
+    AUTH_SIGN_UP: new AppRoute("/auth/signup", "AUTH_SIGN_UP", this.sections.AUTH, { isPublic: true }),
   };
 
   routesArray: AppRoute[] = Object.values(this.routes);

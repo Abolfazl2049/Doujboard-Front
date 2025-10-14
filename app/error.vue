@@ -11,14 +11,12 @@ const setDevToken = () => {
   if (adminToken) localStorage.setItem("token", adminToken);
   reloadNuxtApp({ ttl: 0 });
 };
-const removeTokenNSendToLogin = () => {
+const removeTokenNSendToSignin = () => {
   accountStore.logout();
-  reloadNuxtApp({ path: localePath("/intro"), ttl: 0 });
+  reloadNuxtApp({ path: localePath("/auth/signin"), ttl: 0 });
 };
 const sendToSetup = () => {
-  if (accountStore.hasSetup) {
-    navigateTo({ path: localePath("/auth/sign-in"), replace: true });
-  } else navigateTo({ path: localePath("/intro"), replace: true });
+  navigateTo({ path: localePath("/auth/sign-in"), replace: true });
 };
 </script>
 <template>
@@ -32,7 +30,7 @@ const sendToSetup = () => {
           <BtnPrimary class="w-2/3" v-if="err?.statusCode === 401 && accountStore.isKicked" @click="sendToSetup" :enable-loading="false"> {{ $t("sign_in") }}</BtnPrimary>
           <div v-else-if="err?.statusCode === 401" class="flex gap-2">
             <BtnPrimary @click="reloadNuxtApp({ ttl: 0 })">{{ t("try_again") }}</BtnPrimary>
-            <BtnPrimary variant="outline" @click="removeTokenNSendToLogin">{{ t("login_again") }}</BtnPrimary>
+            <BtnPrimary variant="outline" @click="removeTokenNSendToSignin">{{ t("login_again") }}</BtnPrimary>
           </div>
           <BtnPrimary class="w-full" v-else @click="reloadNuxtApp({ ttl: 0, path: localePath('/') })">{{ t("back_to_home") }}</BtnPrimary>
         </div>

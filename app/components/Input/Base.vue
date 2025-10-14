@@ -43,10 +43,10 @@ const BaseInputProps = {
     default: {},
   },
 };
-export {BaseInputProps}
+export { BaseInputProps };
 </script>
 <script setup lang="ts">
-import { BaseInputProps } from "~/core/constants/public/props";
+import type { InputHTMLAttributes } from "vue";
 
 const { placeholder, type, id, options, autofocus, readonly } = defineProps(BaseInputProps);
 const value = defineModel({ type: String, default: "" });

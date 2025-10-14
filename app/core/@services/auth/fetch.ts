@@ -19,6 +19,16 @@ const fetchSignIn = async (email: string, password: string) => {
     },
   });
 };
+const fetchSignup = async (email: string, password: string) => {
+  return $$fetch<{ token: string }>("/auth/signup", {
+    method: "POST",
+    body: {
+      email,
+      password,
+    },
+  });
+};
+
 const fetchAuthWithApple = async (token: string, audience: string) => {
   return await $$fetch<AuthWithThirdPartyFetchResponse>("/auth/login-apple", {
     method: "POST",
@@ -66,4 +76,4 @@ const fetchVerifyForgotPassword = async (email: string, code: string, newPasswor
   });
 };
 
-export { fetchRequestForgotPassword, fetchSignIn, fetchAuthWithApple, fetchAuthWithGoogle, fetchSendOtp, fetchVerifyOtp, fetchVerifyForgotPassword };
+export { fetchRequestForgotPassword, fetchSignIn, fetchAuthWithApple, fetchAuthWithGoogle, fetchSendOtp, fetchVerifyOtp, fetchVerifyForgotPassword, fetchSignup };

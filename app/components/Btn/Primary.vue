@@ -13,6 +13,6 @@ const emit = defineEmits<BaseBtnEmits>();
 </template>
 <style scoped>
 .bg-btn:not([disabled]) {
-  background: linear-gradient(135deg, #f85206 0%, #f1ad00 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
 }
 </style>

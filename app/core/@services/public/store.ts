@@ -21,6 +21,8 @@ export const usePublicStore = defineStore("public", () => {
     try {
       const res = await baseFetchSettingsData();
       data.value.settings.data = new Settings(res);
+    } catch (error) {
+      console.error(error);
     } finally {
       data.value.settings.isFetchComplete = true;
     }

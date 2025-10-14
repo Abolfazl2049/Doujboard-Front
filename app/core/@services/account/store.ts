@@ -43,10 +43,17 @@ export const useAccountStore = defineStore("account", () => {
         path: localePath(path),
       });
   };
+  const setToken = (token: string) => {
+    localStorage.setItem("token", token);
+    // You might want to set the token in your fetch client here
+    // For now, we'll just store it in localStorage
+  };
+
   const logout = async () => {
     data.value?.clearData();
     data.value = undefined;
     isLogin.value = false;
+    localStorage.removeItem("token");
     reInitFetch();
     navigateTo({ path: localePath("/auth/sign-in") });
   };
@@ -58,6 +65,7 @@ export const useAccountStore = defineStore("account", () => {
     hasSetup,
     fetchData,
     checkAuthStep,
+    setToken,
     logout,
   };
 });
