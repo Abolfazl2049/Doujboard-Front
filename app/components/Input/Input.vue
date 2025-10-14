@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BaseInputEmits } from "./Base.vue";
+import { BaseInputProps, type BaseInputEmits } from "./Base.vue";
 
 let inputValue = defineModel<string>();
 const {

@@ -59,7 +59,7 @@ const months = computed(() => {
 
 const years = computed(() => {
   const maxYear = locale.value === "fa-IR" ? useMoment()().jYear() - 18 : useMoment()().year() - 18;
-  const lastYear = (locale.value === "fa-IR" ? useMoment()().jYear() : useMoment()().year()) - 18 - MAX_USER_AGE;
+  const lastYear = (locale.value === "fa-IR" ? useMoment()().jYear() : useMoment()().year()) - 18 - 120;
   return Array.from({ length: maxYear - lastYear + 1 }, (_, index) => lastYear + index);
 });
 

@@ -8,15 +8,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  css: [
-    "~/assets/css/tailwind.css",
-    "~/assets/css/fonts.css",
-    "~/assets/css/custom.css",
-    "~/assets/css/index.css",
-    "~/assets/css/utilities.css",
-    "~/assets/css/animation.css",
-    "vue-select/dist/vue-select.css",
-  ],
+  css: ["~/assets/css/tailwind.css", "~/assets/css/fonts.css", "~/assets/css/custom.css", "~/assets/css/index.css", "~/assets/css/utilities.css", "~/assets/css/animation.css"],
   imports: {
     dirs: ["core/utils", "core/constants", "core/types", "core/tools", "core/classes"],
   },

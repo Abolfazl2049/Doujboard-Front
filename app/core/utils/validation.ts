@@ -1,4 +1,4 @@
-import type { OnValueValidateFailOptions, ValidateValueOptions } from "~/core/types/public/validation";
+import type { OnValueValidateFailOptions, ValidateValueOptions } from "~/core/types/validation";
 
 const validateValue = (value: any, query: string, options?: ValidateValueOptions, onFailOptions?: OnValueValidateFailOptions) => {
   if (value === undefined || value === null || value === "") {

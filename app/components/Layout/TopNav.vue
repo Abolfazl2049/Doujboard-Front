@@ -23,8 +23,7 @@ const goBack = () => {
   function n() {
     navigateTo({ path: detectBackPath(currentAppRoute?.value?.options?.backPathFallback as string), replace: true });
   }
-  if (NavBackChannel.subscriberCount > 0) NavBackChannel.publish({ goBack: n });
-  else n();
+  n();
 };
 onMounted(() => {
   document.getElementById("default-layout-con")?.addEventListener("scroll", (ev) => {

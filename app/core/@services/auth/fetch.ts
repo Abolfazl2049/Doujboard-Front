@@ -65,24 +65,5 @@ const fetchVerifyForgotPassword = async (email: string, code: string, newPasswor
     },
   });
 };
-const fetchSetImage = async (
-  file: File | null,
-  options: Partial<{
-    id: number;
-    isPrimary: boolean;
-    authStep: UserAuthStepKey;
-    blueCheck: boolean;
-  }> = {},
-) => {
-  const formData = new FormData();
-  if (file) formData.append("image", file);
-  if (options.id) formData.append("id", options.id.toString());
-  if (options.isPrimary) formData.append("primary", "true");
-  if (options.authStep) formData.append("auth_step", options.authStep.toString());
-  if (options.blueCheck) formData.append("blue_check", "true");
-  return await $$fetch<{ data: ApiUserModel }>("/account/set-image", {
-    method: "POST",
-    body: formData,
-  });
-};
-export { fetchRequestForgotPassword, fetchSignIn, fetchAuthWithApple, fetchAuthWithGoogle, fetchSendOtp, fetchVerifyOtp, fetchVerifyForgotPassword, fetchSetImage };
+
+export { fetchRequestForgotPassword, fetchSignIn, fetchAuthWithApple, fetchAuthWithGoogle, fetchSendOtp, fetchVerifyOtp, fetchVerifyForgotPassword };

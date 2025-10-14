@@ -1,4 +1,3 @@
-import { fetchUpdateAccountData } from "~/core/@services/account/fetch";
 import { useAccountStore } from "~/core/@services/account/store";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
@@ -22,7 +21,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         if (hasToken) {
           try {
             await accountStore.fetchData();
-            if (accountStore.data) fetchUpdateAccountData(accountStore.data);
+            // if (accountStore.data) fetchUpdateAccountData(accountStore.data);
             const localePath = useLocalePath();
             const pathToNavigate = accountStore.checkAuthStep({ navigateToWhenComplete: false, returnPath: true });
             if (pathToNavigate) {
