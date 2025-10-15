@@ -6,6 +6,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (nuxtApp.isHydrating && nuxtApp.payload.serverRendered) {
     const accountStore = useAccountStore();
     const publicStore = usePublicStore();
-    await publicStore.fetchSettingsData();
+    // await publicStore.fetchSettingsData();
   }
 });

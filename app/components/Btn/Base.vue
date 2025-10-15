@@ -45,7 +45,7 @@ let sendClickEmit = () => {
 };
 </script>
 <template>
-  <button :disabled="disabled" @click="sendClickEmit" class="group relative transition-all active:not-disabled:scale-95 data-[loading=true]:cursor-not-allowed" :data-loading="loading">
+  <button :disabled="disabled" @click="sendClickEmit" class="group relative transition-all active:not-disabled:scale-[.99] data-[loading=true]:cursor-not-allowed" :data-loading="loading">
     <div class="a-center-x a-center-y group-data-[loading=true]:flex-center absolute hidden">
       <Icon icon="svg-spinners:3-dots-scale-middle" class="size-6.5" />
     </div>

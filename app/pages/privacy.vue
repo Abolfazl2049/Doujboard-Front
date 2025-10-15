@@ -87,6 +87,8 @@ const goBack = () => {
 </template>
 
 <style scoped>
+@reference '~/assets/css/tailwind.css';
+
 .privacy-page {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }

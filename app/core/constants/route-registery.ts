@@ -34,6 +34,7 @@ enum AppSectionName {
 enum AppRouteName {
   AUTH_SIGN_IN = "AUTH_SIGN_IN",
   AUTH_SIGN_UP = "AUTH_SIGN_UP",
+  PRIVACY = "PRIVACY",
 }
 
 class AppSection {
@@ -52,6 +53,7 @@ class RouteRegistryClass {
     // auth
     AUTH_SIGN_IN: new AppRoute("/auth/signin", "AUTH_SIGN_IN", this.sections.AUTH, { isPublic: true }),
     AUTH_SIGN_UP: new AppRoute("/auth/signup", "AUTH_SIGN_UP", this.sections.AUTH, { isPublic: true }),
+    PRIVACY: new AppRoute("/privacy", "PRIVACY", this.sections.AUTH, { isPublic: true }),
   };
 
   routesArray: AppRoute[] = Object.values(this.routes);

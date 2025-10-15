@@ -7,12 +7,10 @@ const { disabled } = defineProps({
 const emit = defineEmits<BaseBtnEmits>();
 </script>
 <template>
-  <BtnBase v-bind="$props" class="bg-btn h-12 rounded-[10px] bg-[#9C8D91] font-light text-white not-disabled:font-medium" @click="(e) => emit('click', e)">
+  <BtnBase
+    v-bind="$props"
+    class="w-full rounded-lg bg-black py-3 font-medium text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+    @click="(e) => emit('click', e)">
     <slot />
   </BtnBase>
 </template>
-<style scoped>
-.bg-btn:not([disabled]) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-}
-</style>

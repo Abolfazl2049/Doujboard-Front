@@ -19,11 +19,11 @@ const fetchSignIn = async (email: string, password: string) => {
     },
   });
 };
-const fetchSignup = async (email: string, password: string) => {
-  return $$fetch<{ token: string }>("/auth/signup", {
+const fetchSignup = async (username: string, password: string) => {
+  return $$fetch<{ data: { token: string } }>("/auth/signup", {
     method: "POST",
     body: {
-      email,
+      username,
       password,
     },
   });

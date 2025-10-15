@@ -16,7 +16,7 @@ const removeTokenNSendToSignin = () => {
   reloadNuxtApp({ path: localePath("/auth/signin"), ttl: 0 });
 };
 const sendToSetup = () => {
-  navigateTo({ path: localePath("/auth/sign-in"), replace: true });
+  navigateTo({ path: localePath("/auth/signin"), replace: true });
 };
 </script>
 <template>

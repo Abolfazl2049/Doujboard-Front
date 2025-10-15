@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { fetchVerifyOtp } from "~/core/@services/auth/fetch";
+import { fetchSignup } from "~/core/@services/auth/fetch";
 import { useAccountStore } from "~/core/@services/account/store";
 import { useToast } from "vue-toastification";
-import { EmailRegex, PasswordRegex } from "~/core/constants/regex";
+import { PasswordRegex } from "~/core/constants/regex";
 import { validateValue } from "~/core/utils/validation";
 
 // Meta
@@ -18,58 +18,36 @@ const toast = useToast();
 
 // Form data
 const formData = reactive({
-  email: "",
+  username: "",
   password: "",
   acceptPrivacy: false,
 });
 
-// Form state
-const isLoading = ref(false);
-
 // Handle form submission
-const handleSubmit = async () => {
+const handleSubmit = async (finish: () => void) => {
   // Validate using your validation system
   if (
-    validateValue(formData.email, "#email-input", { regex: EmailRegex }, { message: "Please enter a valid email address" }) &&
+    validateValue(formData.username, "#username-input", { regex: OnlyEngLetterAndNumberRegex }, { message: "Please enter a valid username" }) &&
     validateValue(formData.password, "#password-input", { regex: PasswordRegex }, { message: "Password must be at least 8 characters with letters, numbers, and special characters" })
   ) {
-    isLoading.value = true;
     try {
-      const response = await fetchVerifyOtp(formData.email, formData.password, "", "");
+      const response = await fetchSignup(formData.username, formData.password);
 
       if (response.data?.token) {
         localStorage.setItem("token", response.data.token);
-        accountStore.setToken(response.data.token);
+        reInitFetch();
 
         toast.success("Account created successfully!");
-        await router.push(localePath("/"));
+        navigateTo(localePath("/"));
       }
-    } catch (error: any) {
-      if (error.status === 409) {
-        toast.error("This email is already registered");
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
+    } catch (err) {
+      console.log(err);
     } finally {
-      isLoading.value = false;
+      finish();
     }
-  }
+  } else finish();
 };
 
-// Handle Google Sign Up
-const handleGoogleSignUp = () => {
-  toast.info("Google Sign-Up coming soon!");
-};
-
-// Switch to signin
-const switchToSignin = () => {
-  router.push(localePath("/auth/signin"));
-};
-
-// Open privacy policy
-const openPrivacy = () => {
-  window.open("/privacy", "_blank");
-};
 </script>
 
 <template>
@@ -84,9 +62,15 @@ const openPrivacy = () => {
     </div>
 
     <!-- Form -->
-    <form @submit.prevent="handleSubmit" class="space-y-6">
-      <!-- Email Field -->
-      <InputAuth v-model="formData.email" label="Email" type="email" placeholder="Enter your email" :options="{ regex: { focusout: EmailRegex } }" id="email-input" />
+    <div>
+      <!-- Username Field -->
+      <InputAuth
+        v-model="formData.username"
+        label="Username"
+        type="text"
+        placeholder="Enter your username"
+        :options="{ regex: { input: OnlyEngLetterAndNumberRegex } }"
+        id="username-input" />
 
       <!-- Password Field -->
       <InputAuth
@@ -95,43 +79,30 @@ const openPrivacy = () => {
         type="password"
         placeholder="Enter your password"
         :show-password-toggle="true"
-        :options="{ regex: { focusout: PasswordRegex } }"
-        id="password-input" />
+        :options="{ regex: { input: OnlyEnglishCharsRegex, focusout: PasswordRegex } }"
+        id="password-input"
+        class="mt-6" />
 
       <!-- Privacy Policy -->
-      <div>
+      <div class="mt-6">
         <label class="flex items-start space-x-2 text-sm">
-          <input v-model="formData.acceptPrivacy" type="checkbox" class="mt-1 rounded border-gray-300" />
+          <Checkbox v-model="formData.acceptPrivacy" />
           <span class="text-gray-600">
             I accept the
-            <button type="button" @click="openPrivacy" class="text-black hover:underline">Privacy Policy</button>
-            and Terms of Service
+            <NuxtLinkLocale to="/privacy" type="button" class="inline-block text-black hover:underline">Privacy Policy</NuxtLinkLocale>
           </span>
         </label>
       </div>
-
       <!-- Submit Button -->
-      <button
-        type="submit"
-        :disabled="isLoading"
-        class="w-full rounded-lg bg-black py-3 font-medium text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50">
-        {{ isLoading ? "Creating account..." : "Create account" }}
-      </button>
-
-      <!-- Google Sign Up -->
-      <button
-        type="button"
-        @click="handleGoogleSignUp"
-        class="flex w-full items-center justify-center space-x-2 rounded-lg border border-gray-300 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50">
-        <Icon name="logos:google-icon" class="h-5 w-5" />
-        <span>Sign up with Google</span>
-      </button>
-    </form>
+      <BtnPrimary @click="handleSubmit" enable-loading :disabled="!formData.acceptPrivacy" class="mt-6 w-full">
+        {{ "Create account" }}
+      </BtnPrimary>
+    </div>
 
     <!-- Sign In Link -->
     <div class="mt-8 text-center text-sm text-gray-500">
       Already have an account?
-      <button type="button" @click="switchToSignin" class="font-medium text-black hover:underline">Sign In</button>
+      <NuxtLinkLocale to="/auth/signin" class="font-medium text-black hover:underline">Sign In</NuxtLinkLocale>
     </div>
   </div>
 </template>

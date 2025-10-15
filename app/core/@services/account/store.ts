@@ -43,11 +43,6 @@ export const useAccountStore = defineStore("account", () => {
         path: localePath(path),
       });
   };
-  const setToken = (token: string) => {
-    localStorage.setItem("token", token);
-    // You might want to set the token in your fetch client here
-    // For now, we'll just store it in localStorage
-  };
 
   const logout = async () => {
     data.value?.clearData();
@@ -65,7 +60,6 @@ export const useAccountStore = defineStore("account", () => {
     hasSetup,
     fetchData,
     checkAuthStep,
-    setToken,
     logout,
   };
 });
