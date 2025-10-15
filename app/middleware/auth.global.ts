@@ -37,9 +37,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
               localStorage.removeItem("token");
               accountStore.isKicked = true;
             }
-            if (isPublic) toast.error("مشکلی در پردازش داده‌ها به وجود آمده لطفا دوباره تلاش کنید");
+            if (isPublic) toast.error("Error processing data, please try again");
             else {
-              return abortNavigation({ message: "مشکلی در پردازش داده‌ها به وجود آمده لطفا دوباره تلاش کنید", statusCode: 401, fatal: true });
+              return abortNavigation({ message: "Error processing data, please try again", statusCode: 401, fatal: true });
             }
           }
         } else accountStore.isKicked = true;
@@ -47,7 +47,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
     // block accessing not public appRoutes
     if (!isPublic && !hasToken) {
-      return abortNavigation({ message: nuxtApp.$i18n.t("to_access_this_page_login"), statusCode: 401, fatal: true });
+      return abortNavigation({ message: "To access this page, please login", statusCode: 401, fatal: true });
     }
   }
 });

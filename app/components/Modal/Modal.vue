@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { AnimatePresence, Motion } from "motion-v";
 import { DialogContent, DialogOverlay, DialogPortal, DialogRoot } from "reka-ui";
 
@@ -25,7 +25,13 @@ defineOptions({
     <DialogPortal>
       <AnimatePresence>
         <DialogOverlay class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-[3px]" />
-        <DialogContent as-child>
+        <DialogContent
+          @interact-outside="
+            (ev) => {
+              if (enabledClose === false) ev.preventDefault();
+            }
+          "
+          as-child>
           <Motion :initial="{ opacity: 0, top: '0%' }" :animate="{ opacity: 1, top: '50%' }" :exit="{ opacity: 0, top: '30%' }">
             <div :dir="localeHead.dir" class="a-center fixed z-[100]" :class="$attrs.class">
               <slot />
