@@ -1,0 +1,36 @@
+@reference "./tailwind.css";
+
+:root {
+  --top-nav-h: 86px;
+  --input-h: 48px;
+  --input-radius: 8px;
+  --btn-h: 44px;
+  --btn-radius: 10px;
+  --btn-h-sm: 36px;
+  --input-h-sm: 39px;
+  --box-radius: 12px;
+  @media (max-width: 1024px) {
+    --top-nav-h: 59px;
+  }
+}
+.default-layout-page-parent > div {
+  @apply min-h-[calc(100dvh-var(--top-nav-h))] w-full px-6.5 py-4 max-lg:px-4 max-lg:py-2;
+}
+#default-layout-con[data-nav-variant="transparent"] .default-layout-page-parent > div {
+  @apply h-screen w-full p-0;
+}
+#default-layout-con[data-nav-variant="chat"] .default-layout-page-parent > div {
+  @apply max-h-[calc(100dvh-var(--chat-nav-h))] min-h-[calc(100dvh-var(--chat-nav-h))];
+}
+button,
+a,
+input,
+textarea,
+[role="button"],
+[type="checkbox"],
+[type="radio"] {
+  touch-action: manipulation;
+}
+body[aria-locked] {
+  @apply overflow-hidden;
+}

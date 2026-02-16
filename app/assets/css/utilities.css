@@ -1,0 +1,136 @@
+@reference "./tailwind.css";
+
+.flex-col {
+  @apply flex;
+}
+
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) {
+  @apply text-red-600 placeholder:!text-red-600;
+}
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) > * {
+  &:where(input, button, textarea) {
+    @apply !border-red-600 !outline-red-600;
+  }
+}
+.invalid-value-con:not(:has(input:focus), :has(*[data-is-valid="true"]), :has(textarea:focus)) + .invalid-value-text {
+  &::after {
+    @apply mx-2 mt-2 !block text-xs text-red-600 content-[attr(data-message)];
+  }
+}
+
+.input-label {
+  @apply text-cod-gray-200 ml-0.5 text-[15px] font-medium select-none;
+}
+.modal-title {
+  @apply text-xl font-semibold;
+}
+
+/* labeled box */
+.box-con-labeled {
+  @apply rounded-xl border border-black/10 px-4.5 py-3;
+}
+.box-con-labeled > .label {
+  @apply before:bg-primary before:a-center-y relative py-2 pl-2.5 before:absolute before:left-0 before:h-[70%] before:w-[4px] before:rounded-lg;
+}
+.box-con-labeled .label span {
+  @apply text-lg font-semibold max-lg:text-base;
+}
+/* title */
+.title-md {
+  @apply text-cod-gray-200 text-lg font-semibold max-lg:text-base;
+}
+.title-sm {
+  @apply text-lg text-[#202020] max-lg:text-base;
+}
+.title-xs {
+  @apply text-sm font-semibold text-[#101828];
+}
+/* desc & text props */
+.description {
+  @apply text-river-bed text-sm max-lg:text-xs;
+}
+.text-prop {
+  @apply text-pale-sky text-xs;
+}
+.text-prop-md {
+  @apply text-pale-sky text-sm;
+}
+
+/*  badge */
+.badge-sm {
+  @apply h-fit rounded-lg border-2 px-2 py-0.5 text-xs font-medium;
+}
+.badge-base {
+  @apply flex items-center gap-1.5 rounded-lg border-2 px-2.5 py-1 text-xs font-medium whitespace-nowrap;
+}
+
+.badge-base::before {
+  content: "";
+  @apply block h-2.5 w-2.5 flex-shrink-0 rounded-full;
+}
+
+.blue-badge {
+  @apply border-[#8EC5FF] bg-[#DBEAFE] text-[#1447E6];
+}
+
+.blue-badge::before {
+  @apply bg-[#2B7FFF];
+}
+
+.red-badge {
+  @apply border-[#FFA2A2] bg-[#FFE2E2] text-[#C10007];
+}
+
+.red-badge::before {
+  @apply bg-[#FB2C36];
+}
+
+.yellow-badge {
+  @apply border-[#FFDF20] bg-[#FEF9C2] text-[#A65F00];
+}
+
+.yellow-badge::before {
+  @apply bg-[#FE9A00];
+}
+.gray-badge {
+  @apply border-[#D1D5DB] bg-[#F3F4F6] text-[#4B5563];
+}
+.gray-badge::before {
+  @apply bg-[#6B7280];
+}
+.green-badge {
+  @apply border-[#A3F7BF] bg-[#D1FADF] text-[#047857];
+}
+.green-badge::before {
+  @apply bg-[#34D399];
+}
+
+.badge-base-filled {
+  @apply rounded-md px-2 py-0.5 text-xs font-medium text-white;
+}
+
+.green-filled-badge {
+  @apply bg-green-haze;
+}
+
+.gray-filled-badge {
+  @apply bg-[#6B7280];
+}
+
+.blue-filled-badge {
+  @apply bg-[#2B7FFF];
+}
+
+.red-filled-badge {
+  @apply bg-[#FB2C36];
+}
+/* others */
+.highlight-box {
+  @apply rounded-xl border-2 p-4;
+}
+.section-home-grid-con {
+  @apply mt-6 grid h-fit grid-cols-3 gap-x-7 gap-y-6 max-lg:grid-cols-1;
+}
+.form-con {
+  @apply grid grid-cols-2 gap-4;
+}

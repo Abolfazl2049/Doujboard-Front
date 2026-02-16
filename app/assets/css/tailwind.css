@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "@tailwindcss/typography";
+@layer base {
+  body {
+    @apply w-full bg-white lg:border-x;
+  }
+  button,
+  a {
+    @apply block cursor-pointer;
+  }
+  button:disabled,
+  input:disabled {
+    @apply cursor-not-allowed opacity-70 transition-opacity duration-300;
+  }
+  input:focus,
+  button:focus {
+    @apply outline-0;
+  }
+  span {
+    @apply line-clamp-1 block overflow-ellipsis;
+  }
+}
+@theme {
+  /* primary  */
+  --color-primary: #e03368;
+  --color-primary-100: color-mix(in srgb, var(--color-primary) 45%, white);
+  --color-primary-200: #e03368;
+  --color-primary-300: #e03368;
+
+  /* others */
+  --color-charcoal: #333333;
+  --color-athens-gray-100: #f9fafb;
+  --color-athens-gray-200: #f3f3f5;
+  --color-silver: #adadad;
+  --color-alto: #d4d4d4;
+  --color-mercury: #e5e5e5;
+  --color-cod-gray: #171717;
+  --color-cod-gray-200: #0a0a0a;
+  --color-river-bed: #4a5565;
+  --color-athens-gray: #e5e7eb;
+  --color-fruit-salad: #4caf50;
+  --color-red: #e7000b;
+  --color-pale-sky: #6a7282;
+  --color-green-haze: #00a63e;
+  --color-storm-gray: #717182;
+  --breakpoint-xs: 400px;
+  --color-placeholder: #00000070;
+}
+
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+@utility flex-between {
+  @apply flex items-center justify-between;
+}
+@utility a-center-x {
+  @apply left-1/2 -translate-x-1/2;
+}
+@utility a-center-y {
+  @apply top-1/2 -translate-y-1/2;
+}
+@utility a-center {
+  @apply a-center-x a-center-y;
+}
+@utility border-gradient {
+  position: relative;
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    padding: 2px;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@utility border-gradient-primary {
+  @apply border-gradient;
+  &::before {
+    background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary));
+  }
+}
+@utility border-gradient-bloody {
+  @apply border-gradient;
+  &::before {
+    background: linear-gradient(180deg, #bc3b00, #561b00);
+    inset: -1px;
+  }
+}
+
+@utility bg-gradient-primary {
+  background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary));
+}
+
+@utility text-gradient {
+  background: -webkit-linear-gradient(0deg, var(--color-primary-100), var(--color-primary));
+  background: linear-gradient(0deg, var(--color-primary-100), var(--color-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-2xs {
+  @apply text-[10px];
+}
+
+@utility hover-opacity {
+  @apply cursor-pointer transition-opacity duration-300 hover:opacity-70;
+}
+
+@utility box {
+  @apply w-full rounded-xl border-2 border-[#E3E3E3] bg-linear-[135deg] from-white to-[#F8FAFC] [box-shadow:0_4px_6px_4px_#0000000A];
+}
+
+@utility status-box {
+  @apply flex-center gap-2 rounded-md px-2.5 py-px text-sm;
+}
+
+@utility status-green {
+  @apply border border-black/10 bg-[#4CAF50] text-white;
+}
+@utility status-primary {
+  @apply bg-primary border border-black/10 text-white;
+}
+@utility status-yellow {
+  @apply border border-black/10 bg-[#FFCC49];
+}
+@utility status-blue {
+  @apply border border-black/10 bg-[#0779F5] text-white;
+}
+@utility status-purple {
+  @apply border border-black/10 bg-[#F3E8FF] text-[#8200DB];
+}
+@utility status-gray {
+  @apply border border-black/10 bg-[#F3F4F6] text-[#364153];
+}
+@utility status-lipstick {
+  @apply border border-black/10 bg-[#FCE7F3] text-[#C6005C];
+}
+@utility status-red {
+  @apply border border-black/10 bg-[#FFE2E2] text-[#C10007];
+}

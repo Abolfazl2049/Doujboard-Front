@@ -1,0 +1,111 @@
+@reference "./tailwind.css";
+
+/* Simple fade transition for public pages */
+.page-default-enter-active,
+.page-default-leave-active {
+  transition: opacity 0.2s ease;
+}
+.page-default-enter-from,
+.page-default-leave-to {
+  opacity: 0;
+}
+
+/* Transition with name "fade" (so useful) */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+/* Fancy slide animation for auth pages */
+.page-auth-enter-active,
+.page-auth-leave-active {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  will-change: transform, opacity;
+  position: absolute;
+  width: 100%;
+}
+.page-auth-enter-from {
+  opacity: 0;
+  transform: translateX(30px) translateY(0);
+}
+.page-auth-leave-to {
+  opacity: 0;
+  transform: translateX(-30px) translateY(0);
+}
+.animate-scale {
+  animation: scale 750ms ease-in-out infinite alternate;
+}
+.animate-scale[data-animation-mode="slow"] {
+  animation: scale 1250ms ease-in-out infinite alternate;
+}
+.animate-bg-fade {
+  @apply relative;
+}
+.animate-bg-fade::before {
+  @apply absolute inset-0 rounded-md bg-blue-400/10 opacity-0 content-[''] dark:bg-blue-300/20;
+  animation: bg-fade 1500ms alternate 100ms 1;
+}
+.animate-bg-fade[data-primary="true"]::before {
+  @apply bg-primary/10 dark:bg-primary/30 rounded-lg;
+}
+@keyframes bg-fade {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes scale {
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+/* accordion animation */
+.AccordionContent[data-state="open"] {
+  animation: slideDown 500ms ease;
+}
+.AccordionContent[data-state="closed"] {
+  animation: slideUp 500ms ease;
+}
+
+.AccordionChevron {
+  transition: transform 500ms ease;
+}
+.AccordionTrigger[data-state="open"] > .AccordionChevron {
+  transform: rotate(-180deg);
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--reka-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--reka-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
