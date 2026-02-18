@@ -1,5 +1,5 @@
-const BASE_API_URL = "https://api.doujboard.uk";
-const DOMAIN_URL = "https://dashboard.doujboard.uk";
+const API_BASE_URL = "http://localhost:4400";
+const DOMAIN_URL = "https://dashboard.Doujboard.uk";
 const MAX_PAGE_SIZE = 250;
 const DEFAULT_PAGE_SIZE = 30;
-export { BASE_API_URL, DOMAIN_URL, MAX_PAGE_SIZE, DEFAULT_PAGE_SIZE };
+export { API_BASE_URL, DOMAIN_URL, MAX_PAGE_SIZE, DEFAULT_PAGE_SIZE };

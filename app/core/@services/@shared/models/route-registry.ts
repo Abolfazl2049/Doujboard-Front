@@ -76,7 +76,7 @@ export enum AppSectionName {
 }
 enum AppRouteName {
   // auth
-  AUTH_SIGN_IN,
+  AUTH_SIGNIN,
   AUTH_VERIFY_OTP,
 
   // home
@@ -280,7 +280,7 @@ class RouteRegistryClass {
   };
   routes: Record<keyof typeof AppRouteName, AppRoute> = {
     // auth
-    AUTH_SIGN_IN: new AppRoute("/auth/sign-in", "AUTH_SIGN_IN", this.sections.AUTH, "Sign In", { isPublic: true }),
+    AUTH_SIGNIN: new AppRoute("/auth/signin", "AUTH_SIGNIN", this.sections.AUTH, "Sign In", { isPublic: true }),
     AUTH_VERIFY_OTP: new AppRoute("/auth/verify-otp", "AUTH_VERIFY_OTP", this.sections.AUTH, "Verify OTP", {
       isPublic: true,
     }),

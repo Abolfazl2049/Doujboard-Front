@@ -16,9 +16,8 @@ export const useAccountStore = defineStore("account", () => {
     data.value?.clearData();
     data.value = undefined;
     isLogin.value = false;
-    reInitFetch();
     clearUserDataInLocalStorage();
-    if (options.navigate) navigateTo({ path: "/auth/sign-in", replace: true });
+    if (options.navigate) navigateTo({ path: "/auth/signin", replace: true });
   };
 
   const fetchUpdateData = async () => {

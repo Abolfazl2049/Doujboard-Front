@@ -15,7 +15,6 @@ class Account extends MicroUser {
   }
   clearData() {
     clearUserDataInLocalStorage();
-    reInitFetch();
   }
 }
 

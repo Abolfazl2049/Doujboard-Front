@@ -1,8 +1,7 @@
 const parseApiResMessage = (data: any) => {
-  let objectFirstKey = typeof data === "object" ? Object.keys(data)[0] : null;
+  const objectFirstKey = typeof data === "object" ? Object.keys(data)[0] : null;
   if (Array.isArray(data)) return data.join("-");
   else if (data.message) return data.message;
-  // @ts-ignore
   else if (objectFirstKey) return `${data[objectFirstKey]}`;
   else if (typeof data === "string" && data.length < 64) return data;
   else return "Error try again";
@@ -33,31 +32,15 @@ const addErrToast = (message: string | null = null) => {
 const onRequestError = () => {
   addErrToast();
 };
-const getHeaders = ({ token }: { token?: string }): HeadersInit => {
-  return {
-    ...(token ? { Authorization: `Token ${token}` } : {}),
-    "Accept-Language": "en",
-  };
-};
 
-let $$fetch: typeof $fetch = $fetch.create({
-  baseURL: BASE_API_URL + "/api/v1",
+const $$fetch: typeof $fetch = $fetch.create({
+  baseURL: API_BASE_URL + "/api/v1",
   onResponseError,
   onRequestError,
   retry: 0,
   timeout: 30000,
   retryStatusCodes: [],
+  credentials: "include",
 });
 
-function reInitFetch(token?: string) {
-  $$fetch = $fetch.create({
-    headers: getHeaders({ token }),
-    baseURL: BASE_API_URL + "/api/v1",
-    retry: 0,
-    onResponseError,
-    onRequestError,
-    timeout: 30000,
-    retryStatusCodes: [],
-  });
-}
-export { $$fetch, reInitFetch, getHeaders };
+export { $$fetch };

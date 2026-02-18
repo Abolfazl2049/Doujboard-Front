@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     public: {
       adminToken: process.env.ADMIN_TOKEN,
       port: process.env.PORT,
+      apiBaseUrl: process.env.API_BASE_URL,
     },
   },
 

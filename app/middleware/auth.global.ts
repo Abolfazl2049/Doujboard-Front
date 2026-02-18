@@ -20,7 +20,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (!triedToAuth.value) {
     triedToAuth.value = true;
     if (token) {
-      reInitFetch(token);
       try {
         const res = await fetchAccountData();
         retrievedAccountDto.value = res;
@@ -30,7 +29,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
         if (err?.status === 403 || err?.status === 401) {
           accountStore.isKicked = true;
           clearUserDataInLocalStorage();
-          return navigateTo({ path: "/auth/sign-in", replace: true });
+          return navigateTo({ path: "/auth/signin", replace: true });
         }
         if (isPublic) toast.error("Failed to process data login");
         else {
@@ -45,9 +44,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   }
 
   if (import.meta.client && nuxtApp.isHydrating && nuxtApp.payload.serverRendered) {
-    // setting token again after hydration, cause it resets
-    if (token) reInitFetch(token);
-
     // set account data after hydration
     if (retrievedAccountDto.value) {
       accountStore.data = new Account(retrievedAccountDto.value);
@@ -55,6 +51,6 @@ export default defineNuxtRouteMiddleware(async (to) => {
   }
   // block accessing private appRoutes
   if (!isPublic && !token) {
-    return navigateTo({ path: "/auth/sign-in", replace: true });
+    return navigateTo({ path: "/auth/signin", replace: true });
   }
 });

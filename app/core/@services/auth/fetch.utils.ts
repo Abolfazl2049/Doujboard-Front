@@ -7,7 +7,7 @@ interface SigninResponse {
 }
 
 async function fetchSignin(email: string, password: string) {
-  return await $$fetch<SigninResponse>("/auth/dashboard/login", {
+  return await $$fetch<SigninResponse>("/auth/signin", {
     method: "POST",
     body: {
       username: email,
@@ -16,15 +16,4 @@ async function fetchSignin(email: string, password: string) {
   });
 }
 
-async function fetchVerifyOtp(email: string, password: string, code: string) {
-  return await $$fetch<SigninResponse>("/auth/dashboard/login", {
-    method: "POST",
-    body: {
-      username: email,
-      password,
-      code,
-    },
-  });
-}
-
-export { fetchSignin, fetchVerifyOtp };
+export { fetchSignin };

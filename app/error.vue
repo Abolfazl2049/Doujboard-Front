@@ -6,7 +6,7 @@ const accountStore = useAccountStore();
 const canBackToHome = computed(() => accountStore.isLogin);
 const removeTokenNSendToLogin = () => {
   accountStore.logout();
-  navigateTo({ path: "/auth/sign-in", replace: true });
+  navigateTo({ path: "/auth/signin", replace: true });
 };
 </script>
 <template>

@@ -3,7 +3,7 @@ import type { Account } from "./model";
 import type { UserSessionDto } from "./session.model";
 
 const fetchAccountData = async () => {
-  return $$fetch<UserDto>("/account/dashboard/profile", { retry: 5 });
+  return $$fetch<UserDto>("/user/profile", { retry: 5 });
 };
 const fetchUpdateAccountData = (data: Account) => {
   const body: Partial<UserDto> = {

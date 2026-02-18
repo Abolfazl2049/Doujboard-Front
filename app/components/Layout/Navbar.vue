@@ -27,7 +27,7 @@ const goBack = () => {
 
 const handleLogout = () => {
   accountStore.logout();
-  navigateTo("/auth/sign-in");
+  navigateTo("/auth/signin");
 };
 </script>
 <template>
